@@ -2,6 +2,7 @@
 import streamlit as st
 import pandas as pd
 import joblib
+import os
 
 # Funcția de încărcare a modelului și scaler-ului
 @st.cache_resource
@@ -14,9 +15,9 @@ def load_model_and_scaler(model_path, scaler_path):
         st.error(f"Eroare la încărcarea modelului sau scaler-ului: {e}")
         return None, None
 
-# Definirea căilor către model și scaler
-model_path = r'C:\Users\ostac\Desktop\TCRI\Baza de date\SVM_sanse.pkl'
-scaler_path = r'C:\Users\ostac\Desktop\TCRI\Baza de date\SVM_scaler_sanse.pkl'
+# Definirea căilor relative către model și scaler
+model_path = os.path.join(os.getcwd(), "SVM_sanse.pkl")
+scaler_path = os.path.join(os.getcwd(), "SVM_scaler_sanse.pkl")
 
 # Încărcarea modelului și scaler-ului
 svm_model, scaler = load_model_and_scaler(model_path, scaler_path)
